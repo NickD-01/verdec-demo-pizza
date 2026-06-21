@@ -20,7 +20,7 @@ export default async function MenuPage() {
       <div className="mb-6 sm:mb-8">
         <h1 className="text-2xl font-bold sm:text-3xl">Ons menu</h1>
         <p className="mt-2 text-muted-foreground">
-          Verse Italiaanse pizza's & pasta — bestel voor afhaling
+          Verse Italiaanse pizza&apos;s &amp; pasta — bestel voor afhaling
         </p>
       </div>
 

@@ -57,7 +57,7 @@ export default async function HomePage() {
             {settings.tagline}
           </h1>
           <p className="mt-4 max-w-lg text-lg text-gray-300">
-            Verse pizza's uit de steenoven, bestel nu voor afhaling.
+            Verse pizza&apos;s uit de steenoven, bestel nu voor afhaling.
           </p>
           <Link href="/menu" className="mt-8 inline-block">
             <Button size="lg" className="text-base">
