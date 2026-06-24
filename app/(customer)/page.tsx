@@ -1,8 +1,8 @@
-﻿export const dynamic = 'force-dynamic'
+export const dynamic = 'force-dynamic'
 
 import Image from "next/image";
 import Link from "next/link";
-import { Clock, MapPin, Phone, Sparkles, Truck } from "lucide-react";
+import { Clock, MapPin, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ProductCard } from "@/components/products/product-card";
 import { prisma } from "@/lib/prisma";
@@ -19,112 +19,85 @@ export default async function HomePage() {
     }),
   ]);
 
-  const features = [
-    {
-      icon: Truck,
-      title: "Snelle afhaling",
-      description: "Bestel vooraf en haal je friet binnen enkele minuten warm en vers op.",
-    },
-    {
-      icon: Sparkles,
-      title: "Verse ingrediënten",
-      description: "Lokaal geteelde aardappelen, de hele dag vers gebakken.",
-    },
-    {
-      icon: MapPin,
-      title: "Lokale Belgische frituur",
-      description: "Authentieke frituurervaring in je buurt.",
-    },
-  ];
-
   return (
     <>
-      <section className="relative flex min-h-[70vh] items-center justify-center overflow-hidden">
+      {/* Hero — warme overlay, groot serif-italic kopje, trattoria-gevoel */}
+      <section className="relative flex min-h-[78vh] items-center overflow-hidden">
         <Image
           src={FOOD_IMAGES.hero}
-          alt="Belgische friet"
+          alt="Verse pizza uit de steenoven"
           fill
           priority
           className="object-cover"
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-verdec-black/90 via-verdec-black/70 to-verdec-black/50" />
-        <div className="container relative z-10 mx-auto px-4 py-20 text-center text-white md:text-left">
-          <p className="mb-2 text-sm font-medium uppercase tracking-widest text-verdec-yellow">
+        <div className="absolute inset-0 bg-gradient-to-t from-verdec-black via-verdec-black/70 to-verdec-black/30" />
+        <div className="container relative z-10 mx-auto px-4 py-20 text-white">
+          <span className="inline-block bg-verdec-yellow px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.25em] text-white">
             {settings.restaurantName}
-          </p>
-          <h1 className="max-w-2xl text-4xl font-bold leading-tight md:text-6xl">
+          </span>
+          <h1 className="mt-6 max-w-2xl font-display text-5xl font-bold italic leading-[1.05] md:text-7xl">
             {settings.tagline}
           </h1>
-          <p className="mt-4 max-w-lg text-lg text-gray-300">
-            Verse pizza&apos;s uit de steenoven, bestel nu voor afhaling.
+          <p className="mt-5 max-w-lg text-lg text-white/80">
+            Authentieke Italiaanse pizza&apos;s en pasta, vers bereid en klaar om
+            af te halen.
           </p>
-          <Link href="/menu" className="mt-8 inline-block">
-            <Button size="lg" className="text-base">
-              Nu bestellen
+          <Link href="/menu" className="mt-9 inline-block">
+            <Button size="lg" className="text-base font-semibold">
+              Ontdek de kaart
             </Button>
           </Link>
         </div>
       </section>
 
+      {/* Italiaanse vlag-strip */}
+      <div className="flex h-1.5">
+        <div className="flex-1 bg-basil" />
+        <div className="flex-1 bg-white" />
+        <div className="flex-1 bg-verdec-yellow" />
+      </div>
+
       {popularProducts.length > 0 && (
-        <section className="container mx-auto px-4 py-16">
-          <div className="mb-8 text-center">
-            <h2 className="text-3xl font-bold">Populaire items</h2>
-            <p className="mt-2 text-muted-foreground">Klantfavorieten</p>
+        <section className="container mx-auto px-4 py-20">
+          <div className="mb-10 text-center">
+            <p className="font-display text-lg italic text-verdec-yellow">Le nostre specialità</p>
+            <h2 className="mt-1 font-display text-4xl font-bold">Onze favorieten</h2>
           </div>
           <div className="grid gap-2 sm:grid-cols-2 sm:gap-3 lg:grid-cols-3 xl:grid-cols-4">
             {popularProducts.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}
           </div>
-          <div className="mt-8 text-center">
+          <div className="mt-10 text-center">
             <Link href="/menu">
-              <Button variant="outline" size="lg">
-                Volledig menu bekijken
+              <Button variant="outline" size="lg" className="font-semibold">
+                Bekijk de volledige kaart
               </Button>
             </Link>
           </div>
         </section>
       )}
 
-      <section className="hidden bg-muted/50 py-16 md:block">
+      {/* Contact — rustieke kaarten op crème */}
+      <section className="border-t border-border bg-secondary/40 py-20">
         <div className="container mx-auto px-4">
-          <h2 className="mb-10 text-center text-3xl font-bold">Waarom bij ons</h2>
-          <div className="grid gap-8 md:grid-cols-3">
-            {features.map((feature) => (
+          <h2 className="mb-10 text-center font-display text-4xl font-bold">Kom langs</h2>
+          <div className="mx-auto grid max-w-3xl gap-6 md:grid-cols-3">
+            {[
+              { icon: MapPin, title: "Adres", value: settings.address },
+              { icon: Phone, title: "Telefoon", value: settings.phone },
+              { icon: Clock, title: "Openingsuren", value: settings.openingHours },
+            ].map((item) => (
               <div
-                key={feature.title}
-                className="rounded-xl border bg-card p-6 text-center transition-shadow hover:shadow-md"
+                key={item.title}
+                className="flex flex-col items-center rounded-lg border border-verdec-yellow/20 bg-card p-7 text-center"
               >
-                <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-verdec-yellow/20">
-                  <feature.icon className="h-7 w-7 text-verdec-yellow" />
-                </div>
-                <h3 className="text-lg font-semibold">{feature.title}</h3>
-                <p className="mt-2 text-sm text-muted-foreground">{feature.description}</p>
+                <item.icon className="mb-3 h-8 w-8 text-verdec-yellow" />
+                <h3 className="font-display text-lg font-semibold">{item.title}</h3>
+                <p className="mt-1 text-sm text-muted-foreground">{item.value}</p>
               </div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="container mx-auto hidden px-4 py-16 md:block">
-        <h2 className="mb-8 text-center text-3xl font-bold">Contact</h2>
-        <div className="mx-auto grid max-w-2xl gap-6 md:grid-cols-3">
-          <div className="flex flex-col items-center rounded-xl border p-6 text-center">
-            <MapPin className="mb-3 h-8 w-8 text-verdec-yellow" />
-            <h3 className="font-semibold">Adres</h3>
-            <p className="mt-1 text-sm text-muted-foreground">{settings.address}</p>
-          </div>
-          <div className="flex flex-col items-center rounded-xl border p-6 text-center">
-            <Phone className="mb-3 h-8 w-8 text-verdec-yellow" />
-            <h3 className="font-semibold">Telefoon</h3>
-            <p className="mt-1 text-sm text-muted-foreground">{settings.phone}</p>
-          </div>
-          <div className="flex flex-col items-center rounded-xl border p-6 text-center">
-            <Clock className="mb-3 h-8 w-8 text-verdec-yellow" />
-            <h3 className="font-semibold">Openingsuren</h3>
-            <p className="mt-1 text-sm text-muted-foreground">{settings.openingHours}</p>
           </div>
         </div>
       </section>

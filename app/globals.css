@@ -4,26 +4,29 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 4%;
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 4%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 4%;
-    --primary: 350 73% 44%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 0 0% 96%;
-    --secondary-foreground: 0 0% 9%;
-    --muted: 0 0% 96%;
-    --muted-foreground: 0 0% 45%;
-    --accent: 350 73% 95%;
-    --accent-foreground: 0 0% 9%;
+    --font-sans: "Inter", system-ui, sans-serif;
+    --font-display: "Playfair Display", Georgia, serif;
+    /* Pizzeria: warme crème achtergrond, tomatenrood primair */
+    --background: 38 44% 96%;
+    --foreground: 20 35% 12%;
+    --card: 40 50% 98%;
+    --card-foreground: 20 35% 12%;
+    --popover: 40 50% 98%;
+    --popover-foreground: 20 35% 12%;
+    --primary: 9 73% 45%;
+    --primary-foreground: 40 50% 98%;
+    --secondary: 36 30% 91%;
+    --secondary-foreground: 20 35% 14%;
+    --muted: 36 26% 90%;
+    --muted-foreground: 24 14% 40%;
+    --accent: 9 60% 93%;
+    --accent-foreground: 20 35% 14%;
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 90%;
-    --input: 0 0% 90%;
-    --ring: 350 73% 44%;
-    --radius: 0.75rem;
+    --border: 32 22% 84%;
+    --input: 32 22% 84%;
+    --ring: 9 73% 45%;
+    --radius: 0.5rem;
   }
 
   .dark {

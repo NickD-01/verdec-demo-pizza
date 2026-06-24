@@ -1,21 +1,17 @@
-﻿import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import type { Metadata } from "next";
 import "./globals.css";
 import { Providers } from "@/components/providers";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-geist-sans" });
-
-// TODO: pas title/description/keywords aan voor de klant
 export const metadata: Metadata = {
   title: {
     default: "Pizzeria Demo | Online bestellen",
-    template: "%s | Demo",
+    template: "%s | Pizzeria Demo",
   },
-  description: "Bestel online en haal af bij Restaurant Naam.",
-  keywords: ["afhaal", "restaurant", "bestellen"],
+  description: "Bestel online verse pizza en pasta uit de steenoven — snel afhalen.",
+  keywords: ["pizza", "pasta", "italiaans", "afhaal", "bestellen", "pizzeria"],
   openGraph: {
-    title: "Restaurant Naam â€” Afhalen",
-    description: "Bestel online en haal af bij Restaurant Naam.",
+    title: "Pizzeria Demo — Afhalen",
+    description: "Bestel online verse pizza en haal af.",
     type: "website",
   },
 };
@@ -23,7 +19,15 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="nl" suppressHydrationWarning>
-      <body className={inter.className}>
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600;1,700&display=swap"
+          rel="stylesheet"
+        />
+      </head>
+      <body className="font-sans">
         <Providers>{children}</Providers>
       </body>
     </html>
